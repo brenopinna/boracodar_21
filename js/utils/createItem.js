@@ -1,13 +1,18 @@
 import { DOMElement } from "./DOMElement.js"
+import { formatMoney } from "../functions.js"
 
 export function createItem(item) {
   const container = new DOMElement("div", ["item"])
+
+  const maxNameLength = 47
+  const initialAmount = 1
+  container.dataset.amount = initialAmount
+  container.dataset.price = item.price
 
   const productImage = new DOMElement("img", ["product-image"], { src: item.imageUrl })
 
   const infoContainer = new DOMElement("div", ["product-info"])
 
-  const maxNameLength = 47
   const productName = new DOMElement(
     "span",
     ["name"],
@@ -23,7 +28,7 @@ export function createItem(item) {
   const productTotal = new DOMElement("div", ["product-total"])
 
   const productValue = new DOMElement("span", ["product-value"], {
-    textContent: item.price,
+    textContent: formatMoney(item.price),
   })
 
   const productAmount = new DOMElement("span", ["product-amount"])
@@ -32,7 +37,7 @@ export function createItem(item) {
   const addButton = new DOMElement("button", ["add"])
 
   const subIcon = new DOMElement("i", ["ph", "ph-minus"])
-  const amount = new DOMElement("span", [], { textContent: 1 })
+  const amount = new DOMElement("span", [], { textContent: initialAmount })
   const addIcon = new DOMElement("i", ["ph", "ph-plus"])
 
   subButton.appendChild(subIcon)
