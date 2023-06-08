@@ -64,6 +64,7 @@ body {
 .cart main {
   padding: var(--default-padding);
   display: grid;
+  align-content: flex-start;
   row-gap: 4.8rem;
   overflow-y: auto;
 }
